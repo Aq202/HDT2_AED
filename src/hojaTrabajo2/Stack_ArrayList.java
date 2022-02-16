@@ -30,6 +30,7 @@ public class Stack_ArrayList<T> implements IStack<T>{
 	 */
 	@Override
 	public T pull() {
+		if(isEmpty()) return null;
 		return elements.remove(0);
 	}
 
@@ -39,6 +40,7 @@ public class Stack_ArrayList<T> implements IStack<T>{
 	 */
 	@Override
 	public T peek() {
+		if(isEmpty()) return null;
 		return elements.get(0);
 	}
 
