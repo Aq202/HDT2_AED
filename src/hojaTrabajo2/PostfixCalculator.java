@@ -3,7 +3,7 @@ package hojaTrabajo2;
 public class PostfixCalculator implements IPosfixCalc {
 
 	@Override
-	public int Evaluate(String expresion) {
+	public int Evaluate(String expresion) throws ArithmeticException {
 
 		String[] values = expresion.split(" ");
 		Stack_ArrayList<Integer> stack = new Stack_ArrayList<>();
@@ -11,46 +11,58 @@ public class PostfixCalculator implements IPosfixCalc {
 
 		for (String value : values) {
 
-			Integer digit = parseDigit(value);
+			if (value.trim() != "") {
 
-			if (digit != null) {
-				stack.push(digit);
-			}
-			// Signo
-			else {
+				Integer digit = parseDigit(value);
 
-				final String sign = value.trim();
-				final String validSigns = "+-*/";
+				if (digit != null) {
+					stack.push(digit);
+				}
+				// Signo
+				else {
 
-				// validar signo
-				if (!validSigns.contains(value))
-					throw new IllegalArgumentException("La expresion ingresada no se encuentra en un formato valido.");
+					final String sign = value.trim();
+					final String validSigns = "+-*/";
 
-				while (stack.count() > 1) {
+					// validar signo
+					if (!validSigns.contains(value))
+						throw new IllegalArgumentException(
+								"La expresion ingresada no se encuentra en un formato valido.");
 
-					int operatorB = stack.pull();
-					int operatorA = stack.pull();
-
-					switch (sign) {
-
-					case "+":
-						result = operatorA + operatorB;
-						break;
-					case "-":
-						result = operatorA - operatorB;
-						break;
-					case "*":
-						result = operatorA * operatorB;
-						break;
-					case "/":
-						result = operatorA / operatorB;
-						break;
-
+					// reverse stack
+					if (sign.equals("-") || sign.equals("/")) {
+						stack = reverseDigits(stack);
 					}
 
-					stack.push(result);
-				}
+					if (stack.count() < 2)
+						throw new IllegalArgumentException("Cantidad de operandos insuficiente.");
 
+					while (stack.count() > 1) {
+
+						int operatorA = stack.pull();
+						int operatorB = stack.pull();
+
+						switch (sign) {
+
+						case "+":
+							result = operatorA + operatorB;
+							break;
+						case "-":
+							result = operatorA - operatorB;
+							break;
+						case "*":
+							result = operatorA * operatorB;
+							break;
+						case "/":
+							result = operatorA / operatorB;
+							break;
+
+						}
+
+						stack.push(result);
+					}
+
+				}
 			}
 		}
 
@@ -64,6 +76,16 @@ public class PostfixCalculator implements IPosfixCalc {
 		} catch (Exception ex) {
 			return null;
 		}
+	}
+
+	private Stack_ArrayList<Integer> reverseDigits(Stack_ArrayList<Integer> originalDigits) {
+
+		Stack_ArrayList<Integer> reversed = new Stack_ArrayList<Integer>();
+		while (!originalDigits.isEmpty()) {
+			reversed.push(originalDigits.pull());
+		}
+		return reversed;
+
 	}
 
 }
