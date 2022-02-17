@@ -1,7 +1,19 @@
 package hojaTrabajo2;
 
+/**
+ * Clase PostfixCalculator.
+ * @author diego
+ * Programado el 16/02/2022
+ *
+ */
+
 public class PostfixCalculator implements IPosfixCalc {
 
+	/**
+	 * Metodo que se encarga de efectuar la operacion especificada en una expresion postfix.
+	 * @param expresion String. Expresion en formato postfix.
+	 * @return int. Resultado de la operacion.
+	 */
 	@Override
 	public int Evaluate(String expresion) throws ArithmeticException {
 
@@ -15,10 +27,11 @@ public class PostfixCalculator implements IPosfixCalc {
 
 				Integer digit = parseDigit(value);
 
+				// caracter es digito
 				if (digit != null) {
 					stack.push(digit);
 				}
-				// Signo
+				// caracter es Signo
 				else {
 
 					final String sign = value.trim();
@@ -34,9 +47,11 @@ public class PostfixCalculator implements IPosfixCalc {
 						stack = reverseDigits(stack);
 					}
 
+					//validar cantidad de operandos
 					if (stack.count() < 2)
 						throw new IllegalArgumentException("Cantidad de operandos insuficiente.");
 
+					//realiza la operacion con todos los operandos almacenados
 					while (stack.count() > 1) {
 
 						int operatorA = stack.pull();
@@ -59,6 +74,7 @@ public class PostfixCalculator implements IPosfixCalc {
 
 						}
 
+						//add result
 						stack.push(result);
 					}
 
@@ -69,6 +85,11 @@ public class PostfixCalculator implements IPosfixCalc {
 		return result;
 	}
 
+	/**
+	 * Metodo que se encarga de convertir un String a Integer.
+	 * @param value String. 
+	 * @return Integer. Si el valor no es un int retorna null.
+	 */
 	private Integer parseDigit(String value) {
 
 		try {
@@ -78,6 +99,11 @@ public class PostfixCalculator implements IPosfixCalc {
 		}
 	}
 
+	/**
+	 * Metodo que se encarga de crear una nueva pila con los digitos invertidos.
+	 * @param originalDigits. Pila con los digitos originales.
+	 * @return Stack_ArrayList.
+	 */
 	private Stack_ArrayList<Integer> reverseDigits(Stack_ArrayList<Integer> originalDigits) {
 
 		Stack_ArrayList<Integer> reversed = new Stack_ArrayList<Integer>();

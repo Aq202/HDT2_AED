@@ -14,6 +14,9 @@ class PostfixCalculatorTest {
 		calculator = new PostfixCalculator();
 	}
 	
+	/**
+	 * Test para verificar la acertividad de la calculadora.
+	 */
 	@Test
 	void operationsTest() {
 		
@@ -23,6 +26,9 @@ class PostfixCalculatorTest {
 
 	}
 	
+	/**
+	 * Test para verificar el comportamiento del programa ante una expresion invalida.
+	 */
 	@Test
 	void invalidExpresionTest() {
 		String message = "";
@@ -37,6 +43,9 @@ class PostfixCalculatorTest {
 		assertEquals("La expresion ingresada no se encuentra en un formato valido.", message);
 	}
 	
+	/**
+	 * Test para verificar el comportamiento del programa ante falta de operandos.
+	 */
 	@Test
 	void insufficientOperandsTest() {
 		String message = "";

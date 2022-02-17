@@ -6,10 +6,22 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Clase FileController.
+ * @author diego
+ * Programado el 16/02/2022
+ *
+ */
+
 public class FileController {
 	
 	public static final String PATH = System.getProperty("user.dir") + "\\datos.txt";
 
+	/**
+	 * Metodo que se encarga de obtener todas las filas del archivo datos.txt
+	 * @return String[]. Array con cada una de las filas de texto por casilla.
+	 * @throws IOException
+	 */
 	public static String[] readFile() throws IOException {
 		
 		File doc = new File(PATH);

@@ -1,5 +1,9 @@
 package hojaTrabajo2;
 
+/**
+ * @author moises.alonso
+ */
+
 public interface IStack<T> {
 
 	void push(T value);

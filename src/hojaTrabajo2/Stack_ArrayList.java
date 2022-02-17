@@ -3,10 +3,10 @@ package hojaTrabajo2;
 import java.util.ArrayList;
 
 /**
- * 
+ * Clase Stack_ArrayList
  * @author Diego Morales
- *
  * @param <T> 
+ * Programado el 16/02/2022
  */
 public class Stack_ArrayList<T> implements IStack<T>{
 	
