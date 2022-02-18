@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 /**
  * Clase Main.
- * @author diego
+ * @author Diego Morales
  * Programado el 16/02/2022
  *
  */
@@ -22,6 +22,7 @@ public class Main {
 		System.out.println("\n***** CALCULADORA POSTFIX *****\n");
 
 		PostfixCalculator calculator = new PostfixCalculator();
+		//Calculator_Kiesling calculator = new Calculator_Kiesling();
 
 		try {
 
