@@ -29,6 +29,7 @@ public class FileController {
 		  BufferedReader obj = new BufferedReader(new FileReader(doc));
 		  ArrayList<String> linesList = new ArrayList<String>();
 
+		  //leer y almacenar las filas del archivo de texto
 		  String line;
 		  while ((line = obj.readLine()) != null) {
 		    linesList.add(line);
@@ -36,6 +37,6 @@ public class FileController {
 		  
 		  obj.close();
 		  
-		  return linesList.toArray(new String[linesList.size()]);
+		  return linesList.toArray(new String[linesList.size()]); //convertir lista a array
 	}
 }

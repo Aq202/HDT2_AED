@@ -42,20 +42,13 @@ public class PostfixCalculator implements IPosfixCalc {
 						throw new IllegalArgumentException(
 								"La expresion ingresada no se encuentra en un formato valido.");
 
-					// reverse stack
-					if (sign.equals("-") || sign.equals("/")) {
-						stack = reverseDigits(stack);
-					}
 
 					//validar cantidad de operandos
 					if (stack.count() < 2)
 						throw new IllegalArgumentException("Cantidad de operandos insuficiente.");
 
-					//realiza la operacion con todos los operandos almacenados
-					while (stack.count() > 1) {
-
-						int operatorA = stack.pull();
 						int operatorB = stack.pull();
+						int operatorA = stack.pull();
 
 						switch (sign) {
 
@@ -76,7 +69,6 @@ public class PostfixCalculator implements IPosfixCalc {
 
 						//add result
 						stack.push(result);
-					}
 
 				}
 			}
@@ -99,19 +91,5 @@ public class PostfixCalculator implements IPosfixCalc {
 		}
 	}
 
-	/**
-	 * Metodo que se encarga de crear una nueva pila con los digitos invertidos.
-	 * @param originalDigits. Pila con los digitos originales.
-	 * @return Stack_ArrayList.
-	 */
-	private Stack_ArrayList<Integer> reverseDigits(Stack_ArrayList<Integer> originalDigits) {
-
-		Stack_ArrayList<Integer> reversed = new Stack_ArrayList<Integer>();
-		while (!originalDigits.isEmpty()) {
-			reversed.push(originalDigits.pull());
-		}
-		return reversed;
-
-	}
 
 }

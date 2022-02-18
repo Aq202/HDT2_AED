@@ -21,8 +21,8 @@ class PostfixCalculatorTest {
 	void operationsTest() {
 		
 		assertEquals(15, calculator.Evaluate("1 2 + 4 * 3 +"));
-		assertEquals(11, calculator.Evaluate("8 2 4 + 7 / 6 * 2 2 / 6 5 + 2 1 -"));
-		assertEquals(6, calculator.Evaluate("64     2    2 2 / 5 + 4      2 1 -"));
+		assertEquals(30, calculator.Evaluate("6 2 3 + *"));
+		assertEquals(10, calculator.Evaluate("4 5 2 * + 5 + 1 + 2 /"));
 
 	}
 	
@@ -51,7 +51,7 @@ class PostfixCalculatorTest {
 		String message = "";
 		
 		try {
-			calculator.Evaluate("6 2 3 + *");
+			calculator.Evaluate("6 2 + *");
 			
 		}catch(IllegalArgumentException ex) {
 			message = ex.getMessage();

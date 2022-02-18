@@ -18,6 +18,8 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
+		System.out.println("\n***** CALCULADORA POSTFIX *****\n");
 
 		PostfixCalculator calculator = new PostfixCalculator();
 
@@ -27,11 +29,13 @@ public class Main {
 
 			// Ejecuta todas las operaciones en el archivo
 			for (int i = 0; i < expresions.length; i++) {
+				
+				System.out.print(String.format("Resultado %s: ", i+1));
 
 				try {
 					
 					//Realiza la operacion 
-					System.out.println(String.format("Resultado %s: %s", i + 1, calculator.Evaluate(expresions[i])));
+					System.out.println(calculator.Evaluate(expresions[i]));
 
 				} catch (ArithmeticException e) {
 					System.out.println("No puedes dividir un número por cero.");
@@ -41,7 +45,6 @@ public class Main {
 			}
 
 		} catch (IOException e) {
-			System.out.println(e);
 			System.out.println(
 					"El archivo no existe.\nPorfavor agregarlo en la siguiente ubicacion: " + FileController.PATH);
 		}
