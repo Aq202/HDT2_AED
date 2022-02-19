@@ -2,16 +2,24 @@ package hojaTrabajo2;
 
 /**
  * Clase PostfixCalculator.
- * @author diego
- * Programado el 16/02/2022
+ * 
+ * @author diego Programado el 16/02/2022
  *
  */
 
 public class PostfixCalculator implements IPosfixCalc {
 
 	/**
-	 * Metodo que se encarga de efectuar la operacion especificada en una expresion postfix.
-	 * @param expresion String. Expresion en formato postfix.
+	 * Metodo que se encarga de efectuar la operacion especificada en una expresion
+	 * postfix.
+	 * 
+	 * Pre: Los elementos de la expresion deben de estar separados por un espacio en blanco. 
+	 * 		Solo se admiten las operaciones + - / *.
+	 * 		Para realizar una operacion se necesitan al menos dos operandos.
+	 * 		La calculadora no admite la division por cero.
+	 * Post: Se devuelve el resultado como valor entero.
+	 * 
+	 * @param expresion String. Expresion en formato postfix. 
 	 * @return int. Resultado de la operacion.
 	 */
 	@Override
@@ -19,7 +27,7 @@ public class PostfixCalculator implements IPosfixCalc {
 
 		String[] values = expresion.split(" ");
 		Stack_ArrayList<Integer> stack = new Stack_ArrayList<>();
-		//Stack_Kiesling<Integer> stack = new Stack_Kiesling<Integer>();
+		// Stack_Kiesling<Integer> stack = new Stack_Kiesling<Integer>();
 		int result = 0;
 
 		for (String value : values) {
@@ -43,33 +51,32 @@ public class PostfixCalculator implements IPosfixCalc {
 						throw new IllegalArgumentException(
 								"La expresion ingresada no se encuentra en un formato valido.");
 
-
-					//validar cantidad de operandos
+					// validar cantidad de operandos
 					if (stack.count() < 2)
 						throw new IllegalArgumentException("Cantidad de operandos insuficiente.");
 
-						int operatorB = stack.pull();
-						int operatorA = stack.pull();
+					int operatorB = stack.pull();
+					int operatorA = stack.pull();
 
-						switch (sign) {
+					switch (sign) {
 
-						case "+":
-							result = operatorA + operatorB;
-							break;
-						case "-":
-							result = operatorA - operatorB;
-							break;
-						case "*":
-							result = operatorA * operatorB;
-							break;
-						case "/":
-							result = operatorA / operatorB;
-							break;
+					case "+":
+						result = operatorA + operatorB;
+						break;
+					case "-":
+						result = operatorA - operatorB;
+						break;
+					case "*":
+						result = operatorA * operatorB;
+						break;
+					case "/":
+						result = operatorA / operatorB;
+						break;
 
-						}
+					}
 
-						//add result
-						stack.push(result);
+					// add result
+					stack.push(result);
 
 				}
 			}
@@ -80,7 +87,8 @@ public class PostfixCalculator implements IPosfixCalc {
 
 	/**
 	 * Metodo que se encarga de convertir un String a Integer.
-	 * @param value String. 
+	 * 
+	 * @param value String.
 	 * @return Integer. Si el valor no es un int retorna null.
 	 */
 	private Integer parseDigit(String value) {
@@ -91,6 +99,5 @@ public class PostfixCalculator implements IPosfixCalc {
 			return null;
 		}
 	}
-
 
 }
